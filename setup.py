@@ -250,6 +250,8 @@ else:
                 break
 
     ffmpeg_lib, ffmpeg_include = get_paths('FFMPEG')
+    # force to user pkgconfig ffmpeg path
+    ffmpeg_lib, ffmpeg_include = None, None
     flags = {'include_dirs': [], 'library_dirs': [], 'libraries': []}
     if ffmpeg_lib is None and ffmpeg_include is None:
         flags = pkgconfig(*['lib' + l for l in objects])
@@ -262,7 +264,8 @@ else:
 
     # sdl
     sdl_lib, sdl_include = get_paths('SDL')
-
+    # force to user pkgconfig sdl2 path
+    sdl_lib, sdl_include = None, None
     sdl = 'SDL2'
     flags = {}
     if sdl_lib is None and sdl_include is None:
